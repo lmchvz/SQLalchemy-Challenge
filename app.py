@@ -92,15 +92,16 @@ def precipitation():
 def stations(): 
 
     # Query for Stations
-    stations = session.query(Station.station, Station.name).all()
+    results = session.query(Station.station, Station.name).all()
 
     # Create a dictionary from the query and append to a list of all the Stations
     all_stations= []
-    for station, name in stations:
+    for station, name in results:
         station_dict = {}
         station_dict["station"] = station
         station_dict["name"] = name
         all_stations.append(station_dict)
+
     # Return JSON List 
     return jsonify(all_stations)
 
@@ -136,33 +137,33 @@ def tobs():
 
 # Define what to do when a user hits /<start>
 @app.route("/api/v1.0/<start>")
-def start_day(start):
+def start(start):
         # Query for the dates and min/avg/max tobs that are equal or greater to the start date given 
-        start_day = session.query(Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        results = session.query(Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
                 filter(Measurement.date >= start).\
                 group_by(Measurement.date).all()
 
         # Convert query into a List
-        start_day_list = list(start_day)
+        start_list = list(results)
         # Return JSON List 
-        return jsonify(start_day_list)
+        return jsonify(start_list)
 
 #################################################
-#  <start>/<end> Route
+#  <start>/<end> RouteS
 #################################################
 
 # Define what to do when a user hits /<start>
 @app.route("/api/v1.0/<start>/<end>")
-def start_end_day(start, end):
+def start_end(start, end):
         # Query for min/avg/max tobs  for dates between the start and end date given
-        start_end_day = session.query(Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        results = session.query(Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
                 filter(Measurement.date >= start).\
                 filter(Measurement.date <= end).\
                 group_by(Measurement.date).all()
         # Convert query into a List
-        start_end_day_list = list(start_end_day)
+        start_end_list = list(results)
         # Return JSON List 
-        return jsonify(start_end_day_list)
+        return jsonify(start_end_list)
 
 if __name__ == "__main__": 
     app.run(debug=True)
