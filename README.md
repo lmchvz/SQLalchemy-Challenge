@@ -4,8 +4,6 @@
 
 To begin, use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. All of the following analysis should be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
 
-* Use the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete your climate analysis and data exploration.
-
 * Choose a start date and end date for your trip. Make sure that your vacation range is approximately 3-15 days total.
 
 * Use SQLAlchemy `create_engine` to connect to your sqlite database.
@@ -36,15 +34,11 @@ To begin, use Python and SQLAlchemy to do basic climate analysis and data explor
 
   * Which station has the highest number of observations?
 
-  * Hint: You may need to use functions such as `func.min`, `func.max`, `func.avg`, and `func.count` in your queries.
-
 * Design a query to retrieve the last 12 months of temperature observation data (tobs).
 
   * Filter by the station with the highest number of observations.
 
   * Plot the results as a histogram with `bins=12`.
-
-- - -
 
 ## Step 2 - Climate App
 
@@ -82,13 +76,10 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
   * When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
 
-## Hints
-
 * You will need to join the station and measurement tables for some of the analysis queries.
 
 * Use Flask `jsonify` to convert your API data into a valid JSON response object.
 
-- - -
 
 ### Optional: Other Recommended Analyses
 
@@ -129,9 +120,3 @@ Now that you have completed your initial analysis, design a Flask API based on t
 * Load the list of daily normals into a Pandas DataFrame and set the index equal to the date.
 
 * Use Pandas to plot an area plot (`stacked=False`) for the daily normals.
-
-  ![daily-normals](Images/daily-normals.png)
-
-### Copyright
-
-Trilogy Education Services © 2019. All Rights Reserved.
